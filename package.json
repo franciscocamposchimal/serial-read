@@ -1,0 +1,22 @@
+{
+  "name": "serial-read",
+  "version": "1.0.0",
+  "description": "serial-socket.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciscocamposchimal/serial-read.git"
+  },
+  "author": "Franko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franciscocamposchimal/serial-read/issues"
+  },
+  "homepage": "https://github.com/franciscocamposchimal/serial-read#readme",
+  "dependencies": {
+    "socket.io-client": "^2.3.0"
+  }
+}
