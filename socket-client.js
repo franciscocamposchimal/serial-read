@@ -1,5 +1,5 @@
 const socket = require('socket.io-client')('http://localhost:3000');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 function pRandVal() {
 	return Math.floor(Math.random() * (500 - 1 + 1) + 1);
@@ -15,7 +15,7 @@ socket.on('connect', () => {
 
 	setInterval(() => {
 		const data = {
-			date: moment().format('DD/MM/YYYY h:mm:ss a'),
+			date: moment().tz('America/Merida').format('DD/MM/YYYY h:mm:ss a'),
 			sensorsP: [
 				{ name: 's4', type: 'p', val: pRandVal() },
 				{ name: 's5', type: 'p', val: pRandVal() },
