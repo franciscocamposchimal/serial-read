@@ -6,7 +6,7 @@ function pRandVal() {
 }
 
 function tRandVal() {
-	return Math.floor(Math.random() * (100 - 1 + 1) + 1);
+	return Math.floor(Math.random() * (250 - 1 + 1) + 1);
 }
 
 socket.on('connect', () => {
@@ -15,17 +15,16 @@ socket.on('connect', () => {
 
 	setInterval(() => {
 		const data = {
-			date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+			date: moment().format('DD/MM/YYYY h:mm:ss a'),
 			sensorsP: [
+				{ name: 's4', type: 'p', val: pRandVal() },
 				{ name: 's5', type: 'p', val: pRandVal() },
-				{ name: 's6', type: 'p', val: pRandVal() },
-				{ name: 's7', type: 'p', val: pRandVal() }
+				{ name: 's6', type: 'p', val: pRandVal() }
 			],
 			sensorsT: [
 				{ name: 's1', type: 't', val: tRandVal() },
 				{ name: 's2', type: 't', val: tRandVal() },
 				{ name: 's3', type: 't', val: tRandVal() },
-				{ name: 's4', type: 't', val: tRandVal() }
 			]
 		};
 		socket.emit('SERVER_SOCK', data);
