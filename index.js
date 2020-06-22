@@ -34,8 +34,8 @@ function logData(data) {
 			// console.log('DATA typeof: ', typeof obj);
 			// console.log('DATA BUFFER: ', obj);
 		} catch (error) {
-			return { message: 'PARSE ERROR...' };
 			console.log('ERROR');
+			return { message: 'PARSE ERROR...' };
 		}
 		bufferData = '';
 	}
