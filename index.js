@@ -5,8 +5,8 @@ let bufferData = '';
 
 function logData(data) {
 	bufferData += data.toString('utf8');
-	if (bufferData.includes('\r\n')) {
-		bufferData.split('\r\n');
+	if (bufferData.includes('\n')) {
+		bufferData.split('\n');
 		try {
 			bufferData = bufferData.split('|');
 			bufferData = bufferData.filter((e) => e !== '\r\n');
@@ -25,7 +25,7 @@ function logData(data) {
 						{ name: 's3', type: 't', val: t3 }
 					]
 				};
-        console.log('DATOS: ', bufferData);
+        console.log('DATOS: ', data);
 			}
 			// const obj = JSON.parse(bufferData);
 			// console.log('DATA typeof: ', typeof obj);
