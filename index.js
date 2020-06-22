@@ -1,5 +1,7 @@
 const raspi = require('raspi');
 const Serial = require('raspi-serial').Serial;
+const socket = require('socket.io-client')('https://argosback.arido.dev'); // ('http://localhost:3000');
+const moment = require('moment-timezone');
 
 let bufferData = '';
 
@@ -25,25 +27,35 @@ function logData(data) {
 						{ name: 's3', type: 't', val: t3 }
 					]
 				};
-        console.log('DATOS: ', data);
+				console.log('DATOS: ', data);
+				return data;
 			}
 			// const obj = JSON.parse(bufferData);
 			// console.log('DATA typeof: ', typeof obj);
 			// console.log('DATA BUFFER: ', obj);
 		} catch (error) {
+			return { message: 'PARSE ERROR...' };
 			console.log('ERROR');
 		}
 		bufferData = '';
 	}
 }
 
-raspi.init(() => {
-	var serial = new Serial({ portId: '/dev/ttyS0', baudRate: 9600 });
-	serial.open(() => {
-		serial.on('data', (data) => {
-			// process.stdout.write(data);
-			logData(data);
+socket.on('connect', () => {
+	console.log('connected');
+	socket.emit('SENSORS_CONNECTION', true);
+	raspi.init(() => {
+		var serial = new Serial({ portId: '/dev/ttyS0', baudRate: 9600 });
+		serial.open(() => {
+			serial.on('data', (data) => {
+				// process.stdout.write(data);
+				const sensorsData = logData(data);
+				socket.emit('SERVER_SOCK', sensorsData);
+			});
+			// serial.write('Hello from raspi-serial');
 		});
-		// serial.write('Hello from raspi-serial');
 	});
+});
+socket.on('disconnect', () => {
+	console.log('disconnected');
 });
