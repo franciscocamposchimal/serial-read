@@ -1,4 +1,4 @@
-const socket = require('socket.io-client')('http://localhost:3000');
+const socket = require('socket.io-client')('https://argosback.arido.dev'); // ('http://localhost:3000');
 const moment = require('moment-timezone');
 
 function pRandVal() {
