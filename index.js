@@ -10,13 +10,11 @@ function logData(data, socket) {
 	if (bufferData.includes('\n')) {
 		bufferData.split('\n');
 		try {
-			console.log(bufferData);
-			bufferData = bufferData.slice(0,-1);
-			console.log(bufferData);
 			bufferData = bufferData.split('|');
+			console.log('CADENA: ',bufferData);
 			if (bufferData.length > 6) {
-				bufferData = bufferData.slice(0,6);
-				console.log(bufferData);
+				// bufferData = bufferData.slice(0,6);
+				console.log('ARRAY: ',bufferData);
 				const [ date, p1, p2, p3, t1, t2, t3 ] = bufferData;
 				const data = {
 					date,
