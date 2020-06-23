@@ -7,6 +7,7 @@ let bufferData = '';
 
 function logData(data, socket) {
 	bufferData += data.toString('utf8');
+	console.log(bufferData);
 	if (bufferData.includes('\n')) {
 		bufferData.split('\n');
 		try {
