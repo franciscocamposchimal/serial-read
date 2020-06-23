@@ -11,7 +11,7 @@ function logData(data, socket) {
 		bufferData.split('\n');
 		try {
 			bufferData = bufferData.split('|');
-			bufferData.pop();
+			bufferData.slice(0,6);
 			//bufferData = bufferData.filter((e) => e !== '\r\n' || e !== '\r\n\r' || e !== '\n');
 			console.log(bufferData);
 			if (bufferData.length > 0) {
