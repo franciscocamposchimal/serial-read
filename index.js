@@ -10,6 +10,7 @@ function logData(data, socket) {
 	if (bufferData.includes('\n')) {
 		bufferData.split('\n');
 		try {
+			console.log(bufferData);
 			bufferData = bufferData.split('|');
 			if (bufferData.length > 6) {
 				bufferData = bufferData.slice(0,6);
