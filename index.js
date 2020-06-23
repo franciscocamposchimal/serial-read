@@ -1,11 +1,11 @@
 const raspi = require('raspi');
 const Serial = require('raspi-serial').Serial;
 const socket = require('socket.io-client')('https://argosback.arido.dev'); // ('http://localhost:3000');
-const moment = require('moment-timezone');
+// const moment = require('moment-timezone');
 
 let bufferData = '';
 
-function logData(data) {
+function logData(data, socket) {
 	bufferData += data.toString('utf8');
 	if (bufferData.includes('\n')) {
 		bufferData.split('\n');
@@ -26,8 +26,9 @@ function logData(data) {
 						{ name: 's2', type: 't', val: t2 },
 						{ name: 's3', type: 't', val: t3 }
 					]
-				};
-				console.log('DATOS: ', data);
+        };
+        socket.emit('SERVER_SOCK', data);
+				// console.log('DATOS: ', data);
 				// return data;
 			}
 			// const obj = JSON.parse(bufferData);
@@ -50,7 +51,7 @@ socket.on('connect', () => {
 			serial.on('data', (data) => {
 				// process.stdout.write(data);
         // const sensorsData = logData(data);
-        logData(data);
+        logData(data,socket);
 				//socket.emit('SERVER_SOCK', sensorsData);
 			});
 			// serial.write('Hello from raspi-serial');
