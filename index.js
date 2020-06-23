@@ -12,6 +12,7 @@ function logData(data, socket) {
 		try {
 			bufferData = bufferData.split('|');
 			bufferData = bufferData.filter((e) => e !== '\r\n');
+			console.log(bufferData);
 			if (bufferData.length > 0) {
 				const [ date, p1, p2, p3, t1, t2, t3 ] = bufferData;
 				const data = {
