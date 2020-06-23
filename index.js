@@ -13,10 +13,10 @@ function logData(data, socket) {
 		try {
 			bufferData = bufferData.split('|');
 			console.log('CADENA: ',bufferData);
-			if (bufferData.length > 6) {
+			if (bufferData.length > 5) {
 				// bufferData = bufferData.slice(0,6);
 				console.log('ARRAY: ',bufferData);
-				const [ dateTime, p1, p2, p3, t1, t2, t3 ] = bufferData;
+				const [ p1, p2, p3, t1, t2, t3 ] = bufferData;
 				const data = {
 					date: moment().tz('America/Merida').format('DD/MM/YYYY h:mm:ss a'),
 					sensorsP: [
