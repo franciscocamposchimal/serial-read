@@ -11,7 +11,7 @@ function logData(data, socket) {
 		bufferData.split('\n');
 		try {
 			bufferData = bufferData.split('|');
-			bufferData = bufferData.filter((e) => e !== '\r\n');
+			bufferData = bufferData.filter((e) => e !== '\r\n' || e !== '\r\n\r' || e !== '\n');
 			console.log(bufferData);
 			if (bufferData.length > 0) {
 				const [ date, p1, p2, p3, t1, t2, t3 ] = bufferData;
@@ -27,8 +27,8 @@ function logData(data, socket) {
 						{ name: 's2', type: 't', val: t2 },
 						{ name: 's3', type: 't', val: t3 }
 					]
-        };
-        socket.emit('SERVER_SOCK', data);
+				};
+				socket.emit('SERVER_SOCK', data);
 				// console.log('DATOS: ', data);
 				// return data;
 			}
@@ -51,8 +51,8 @@ socket.on('connect', () => {
 		serial.open(() => {
 			serial.on('data', (data) => {
 				// process.stdout.write(data);
-        // const sensorsData = logData(data);
-        logData(data,socket);
+				// const sensorsData = logData(data);
+				logData(data, socket);
 				//socket.emit('SERVER_SOCK', sensorsData);
 			});
 			// serial.write('Hello from raspi-serial');
