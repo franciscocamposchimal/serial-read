@@ -28,14 +28,14 @@ function logData(data) {
 					]
 				};
 				console.log('DATOS: ', data);
-				return data;
+				// return data;
 			}
 			// const obj = JSON.parse(bufferData);
 			// console.log('DATA typeof: ', typeof obj);
 			// console.log('DATA BUFFER: ', obj);
 		} catch (error) {
 			console.log('ERROR');
-			return { message: 'PARSE ERROR...' };
+			// return { message: 'PARSE ERROR...' };
 		}
 		bufferData = '';
 	}
@@ -49,8 +49,9 @@ socket.on('connect', () => {
 		serial.open(() => {
 			serial.on('data', (data) => {
 				// process.stdout.write(data);
-				const sensorsData = logData(data);
-				socket.emit('SERVER_SOCK', sensorsData);
+        // const sensorsData = logData(data);
+        logData(data);
+				//socket.emit('SERVER_SOCK', sensorsData);
 			});
 			// serial.write('Hello from raspi-serial');
 		});
