@@ -11,7 +11,7 @@ function logData(data, socket) {
 		bufferData.split('\n');
 		try {
 			console.log(bufferData);
-			bufferData = bufferData.substring(-1);
+			bufferData = bufferData.slice(0,-1);
 			console.log(bufferData);
 			bufferData = bufferData.split('|');
 			if (bufferData.length > 6) {
