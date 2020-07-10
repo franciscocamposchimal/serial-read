@@ -1,4 +1,5 @@
-const socket = require('socket.io-client')('https://argosback.arido.dev'); // ('http://localhost:3000');
+// const socket = require('socket.io-client')('https://argosback.arido.dev');
+const socket = require('socket.io-client')('http://localhost:3000');
 const moment = require('moment-timezone');
 
 function pRandVal() {
@@ -6,7 +7,7 @@ function pRandVal() {
 }
 
 function tRandVal() {
-	return Math.floor(Math.random() * (250 - 1 + 1) + 1);
+	return Math.floor(Math.random() * (300 - 28 + 1) + 1);
 }
 
 socket.on('connect', () => {
@@ -28,7 +29,7 @@ socket.on('connect', () => {
 			]
 		};
 		socket.emit('SERVER_SOCK', data);
-	}, 1000);
+	}, 2500);
 });
 socket.on('disconnect', () => {
 	console.log('disconnected');
